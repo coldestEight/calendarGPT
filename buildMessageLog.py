@@ -34,8 +34,10 @@ async def messageInit():
     '''
     }]
 
+    #GPT API call
     response = getMsgResponse(messageLog)
 
+    #add response to messageLog
     messageLog.append({"role":"assistant","content": response})
 
     return response
@@ -45,7 +47,8 @@ async def messageInit():
 async def buildMessageLog(userIn):
   
     global messageLog
-    
+
+    #add user's message to messageLog
     messageLog.append({"role":"user","content": userIn})
 
   #Send only the 5 most recent messages to the AI
@@ -56,6 +59,7 @@ async def buildMessageLog(userIn):
       response = getMsgResponse(messageLog)
 
 
+    #add AI response to messagelog
     messageLog.append({"role":"assistant","content": response})
     
     return response
