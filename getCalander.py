@@ -14,6 +14,7 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 
 def getCalender():
+    maxEvents = 20
     #Gets the next 10 events from Google Calendar API
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
@@ -39,9 +40,9 @@ def getCalender():
         # Call the Calendar API
         now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
 
-        print('Getting the upcoming 10 events')
+        print('Getting the upcoming ' + str(maxEvents) + ' events')
         events_result = service.events().list(calendarId='primary', timeMin=now,
-                                              maxResults=10, singleEvents=True,
+                                              maxResults=maxEvents, singleEvents=True,
                                               orderBy='startTime', timeZone = 'Canada/Eastern').execute()
         events = events_result.get('items', [])
 
@@ -61,8 +62,6 @@ def getCalender():
             start = re.sub("T", " ", start)
 
             allEvents += (start + "\t "+ event['summary'] +"\n")
-
-            print(start + "\t "+ event['summary'])
 
         return allEvents
 
