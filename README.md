@@ -1,5 +1,5 @@
 # calendarGPT
-Virtual assistant with access to calendar events using Google Calendar.
+Virtual assistant with access to calendar events using Google Calendar. (Times are only in EST)
 
 # Getting Started
 
@@ -43,13 +43,13 @@ This is to be used in a similar way to other GPT-based assistants but can handle
 # Known Issues/Constraints
  - Markdown code blocks and formatting not supported
  - User can send messages before AI has responded
- - AI may "break character" after a few outputs due to current token managing code
 
 # Planned Features/Fixes
  - Support for code formatting
  - Restrict user input while AI generates response
- - Improve token management
  - Include context specifc information triggers (i.e the word calendar sends calendar information to AI)
+ - Add support for different time zones
+ - Get event end times
 
 # Acknowledgements
  - [OpenAI Example Code](https://platform.openai.com/examples)
