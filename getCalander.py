@@ -57,11 +57,16 @@ def getCalender():
         #Also removes UTC time
         for event in events:
             start = event['start'].get('dateTime', event['start'].get('date'))
+            end = event['end'].get('dateTime', event['end'].get('date'))
             
+
             start = re.sub(":00-[0-9][0-9]:00","",start)
             start = re.sub("T", " ", start)
 
-            allEvents += (start + "\t "+ event['summary'] +"\n")
+            end = re.sub(":00-[0-9][0-9]:00","",end)
+            end = re.sub("T", " ", end)
+
+            allEvents += (start + " - " + end + "\t "+ event['summary'] +"\n")
 
         return allEvents
 
