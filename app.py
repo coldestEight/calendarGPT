@@ -2,6 +2,7 @@ import asyncio
 from flask import Flask, render_template,send_file, jsonify, request
 
 app = Flask(__name__)
+messageLog = []
 
 #display main page
 @app.route('/')
@@ -12,7 +13,7 @@ def index():
 @app.route('/run_init', methods=['POST'])
 def runInit():
     from buildMessageLog import messageInit
-    response = asyncio.run(messageInit())
+    response = asyncio.run(messageInit(messageLog))
     #send response back to webpage as json
     return jsonify({'response' : response})
 
@@ -22,7 +23,7 @@ def getMessage():
     from buildMessageLog import buildMessageLog
     #read in user input from json
     userInJSON = request.get_json()
-    response = asyncio.run(buildMessageLog(userInJSON["userIn"]))
+    response = asyncio.run(buildMessageLog(userInJSON["userIn"], messageLog))
     #send response back as json
     return jsonify({'response': response})
 
