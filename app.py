@@ -12,6 +12,7 @@ def index():
 #initialize first message from AI
 @app.route('/run_init', methods=['POST'])
 def runInit():
+    messageLog.clear()
     from buildMessageLog import messageInit
     response = asyncio.run(messageInit(messageLog))
     #send response back to webpage as json

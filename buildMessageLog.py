@@ -48,11 +48,11 @@ async def buildMessageLog(userIn, messageLog):
 
   #Send only the 5 most recent messages to the AI
   #Avoids going over token limit + limits token use
-    if(len(messageLog) > 6):
+    if(len(messageLog) > 5):
 
       initMessage = messageLog[0]
 
-      messageLog = messageLog[-6:]
+      messageLog = messageLog[-5:]
 
       messageLog = [initMessage] + messageLog
 
