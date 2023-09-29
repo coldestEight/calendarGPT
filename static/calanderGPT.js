@@ -7,16 +7,20 @@ sendButton.onclick = sendUserChat
 
 isGenerating = false
 
-userIn.addEventListener('keydown',function(){
-    if(event.key == "Enter"){
 
-        sendUserChat()
-    }
-});
+//Checks if a request is active to stop user from sending more inputs
+$(document).ajaxStart(function(){
 
+    isGenerating = true
 
+}).ajaxStop(function(){
+
+    isGenerating = false
+
+})
+
+//get initial AI response when the page loads via POST request
 $(document).ready(function() {
-    // Send a POST request to the /run_function route when the page loads
     
     $.ajax({
         type: 'POST',
@@ -35,17 +39,8 @@ $(document).ready(function() {
     })
 })
 
-$(document).ajaxStart(function(){
 
-    isGenerating = true
-
-}).ajaxStop(function(){
-
-    isGenerating = false
-
-})
-
-
+//get user response from textbox and send to AI via POST request
 function sendUserChat(){
     userText = userIn.value
 
@@ -82,3 +77,10 @@ function sendUserChat(){
     }
 }
 
+//call sendUserChat when the enter key is pressed while clicked onto textbox
+userIn.addEventListener('keydown',function(){
+    if(event.key == "Enter"){
+
+        sendUserChat()
+    }
+});
