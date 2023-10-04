@@ -9,6 +9,10 @@
     
 }
 
+.p{
+    white-space: pre-wrap;
+}
+
 .conversation{
     display:inline-block; 
     margin: auto;
@@ -35,7 +39,7 @@
     border-radius: 20px;
     margin: 0px;
     margin-left: 10px;
-    margin-right: 100px;
+    margin-right: 150px;
     
 }
 
