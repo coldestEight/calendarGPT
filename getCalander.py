@@ -14,8 +14,8 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 
 def getCalender():
-    maxEvents = 20
-    #Gets the next 10 events from Google Calendar API
+    maxEvents = 30
+    #Gets the next n events from Google Calendar API
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -66,7 +66,7 @@ def getCalender():
             end = re.sub(":00-[0-9][0-9]:00","",end)
             end = re.sub("T", " ", end)
 
-            allEvents += (start + " - " + end + "\t "+ event['summary'] +"\n")
+            allEvents += (start + " to " + end + "\t "+ event['summary'] +"\n")
 
         return allEvents
 
