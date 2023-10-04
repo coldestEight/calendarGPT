@@ -1,6 +1,7 @@
 from getCalander import getCalender
 from gptResponses import getMsgResponse
 from datetime import datetime
+import re
 
 
 #receives the events and sends it along with a starting prompt to the AI
@@ -9,7 +10,7 @@ async def messageInit(messageLog):
     events = getCalender()
 
     now = datetime.now()
-    dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+    dt_string = now.strftime("%Y-%m-%d %H:%M")
     print(dt_string)
 
     messageLog.append({
@@ -61,6 +62,13 @@ async def buildMessageLog(userIn, messageLog):
     else:
       response = getMsgResponse(messageLog)
 
+
+    response.replace("<", "&lt;")
+    response.replace("&","&amp;")
+
+    if("```" in response):
+       response = re.sub("```.*","<pre><code>",response, 1)
+       response = re.sub("```","</code></pre>",response)
 
     #add AI response to messagelog
     messageLog.append({"role":"assistant","content": response})

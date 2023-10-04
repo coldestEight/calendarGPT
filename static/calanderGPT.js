@@ -28,7 +28,7 @@ $(document).ready(function() {
         success: function(response) {
 
             gptChat = document.createElement("p");
-            gptChat.textContent = response.response;
+            gptChat.innerHTML = response.response;
             gptChat.classList.add("gptChat")
             chat.append(linebreak.cloneNode())
             chat.append(gptChat)
@@ -64,7 +64,7 @@ function sendUserChat(){
             success: function(response) {
 
                 gptChat = document.createElement("p")
-                gptChat.textContent = response.response
+                gptChat.innerHTML = response.response
                 gptChat.classList.add("gptChat")
                 chat.append(linebreak.cloneNode())
                 chat.append(gptChat)
