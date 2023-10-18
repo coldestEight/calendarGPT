@@ -2,6 +2,7 @@ chat = document.getElementById('chat')
 linebreak = document.createElement("br")
 userIn = document.getElementById("userTextIn")
 sendButton = document.getElementById("sendButton")
+generatingMsg = document.getElementById("generatingMsg")
 
 sendButton.onclick = sendUserChat
 
@@ -12,10 +13,12 @@ isGenerating = false
 $(document).ajaxStart(function(){
 
     isGenerating = true
+    generatingMsg.style.display = "block"
 
 }).ajaxStop(function(){
 
     isGenerating = false
+    generatingMsg.style.display = "none"
 
 })
 
