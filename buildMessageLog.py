@@ -2,7 +2,7 @@ from getCalander import getCalender
 from gptResponses import getMsgResponse
 from datetime import datetime
 import re
-
+import html
 
 #receives the events and sends it along with a starting prompt to the AI
 async def messageInit(messageLog):
@@ -49,7 +49,7 @@ async def buildMessageLog(userIn, messageLog):
 
   #Send only the 5 most recent messages to the AI
   #Avoids going over token limit + limits token use
-    if(len(messageLog) > 5):
+    if(len(messageLog) > 9):
 
       initMessage = messageLog[0]
 
@@ -63,13 +63,16 @@ async def buildMessageLog(userIn, messageLog):
       response = getMsgResponse(messageLog)
 
 
-    response.replace("<", "&lt;")
-    response.replace("&","&amp;")
+
+    response = html.escape(response)
 
     if("```" in response):
-       response = re.sub("```.*","<pre><code>",response, 1)
+       response = re.sub("```.*","<pre><code>",response,1)
        response = re.sub("```","</code></pre>",response)
 
+    response = re.sub("[\n\r]+","<br>", response)
+       
+    
     #add AI response to messagelog
     messageLog.append({"role":"assistant","content": response})
     
