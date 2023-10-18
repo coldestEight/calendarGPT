@@ -7,7 +7,7 @@ openai.api_key = env["OPENAI_API_KEY"]
 
 #Makes call to GPT API and formats response
 def getMsgResponse(messageLog):
-    response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages = messageLog, temperature= 1.4,max_tokens=700)
+    response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages = messageLog, temperature= 1.0,max_tokens=1000)
     rawOut = response.choices[0].message.content
 
     punctuationList = [".","?","!"]
