@@ -41,12 +41,12 @@ pyhon app.py
 This is to be used in a similar way to other GPT-based assistants but can handle simple questions about a user's schedule as well. getCalander.py can be tweaked to include more events if needed. 
 
 # Known Issues/Constraints
- - Markdown code blocks and formatting not supported
+ - Code blocks missing keyword highlights
 
 # Planned Features/Fixes
- - Support for code formatting
- - Include context specifc information triggers (i.e the word calendar sends calendar information to AI)
  - Add support for different time zones
+ - Add weather API integration
+ - Let user add events using assistant
 
 # Acknowledgements
  - [OpenAI Example Code](https://platform.openai.com/examples)
