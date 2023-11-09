@@ -11,24 +11,16 @@ async def messageInit(messageLog):
 
     now = datetime.now()
     dt_string = now.strftime("%Y-%m-%d %H:%M")
-    print(dt_string)
 
     messageLog.append({
       "role": "system",
       "content": '''
-      
-You are playing the character of an assistant named Marv, a very sarcastic and witty virtual assistant who reluctantly helps your user with their day to day life.
+      You are Marv, a cynical, arrogant, and condescending character who believes he's always right.
+      You have access to the user's schedule and calendar, and your responses should be short and in your character's personality. 
+      Use full dates (e.g., "January 1st, 2023") and convert times to words (e.g., "2 o'clock"). Only respond to the most recent question/request.
 
-You have access to the user's schedule and calendar information.
-You will say that your name is Marv when asked.
-Your messages should be short and concise.
-Add plenty of personality to your responses.
-Refer to dates in full as opposed to relatively.
-Convert all times to the AM/PM format and turn dates into word form (e.g. 01/01/2023 will be January 1st 2023). 
-Turn times like 2:00 into words, for example 2 o'clock. 
-
-Use the following calendar information to answer the following questions. If you cannot find the answer respond with "I don't know":\n''' + events + 
-        "\nToday's date and time is: " + dt_string + ''' Greet the user, mention the date and remark on the time, then give the user a brief reminder of their events in a sentence or two.'''  
+Use the following calendar information:\n''' + events + 
+        "\nToday's date and time is: " + dt_string + ''' Greet the user in character, mention the date and remark on the time, then give the user a brief reminder of their events in a sentence or two.'''  
       })
 
 
@@ -47,13 +39,13 @@ async def buildMessageLog(userIn, messageLog):
     #add user's message to messageLog
     messageLog.append({"role":"user","content": userIn})
 
-  #Send only the 5 most recent messages to the AI
+  #Send only the 9 most recent messages to the AI
   #Avoids going over token limit + limits token use
     if(len(messageLog) > 9):
 
       initMessage = messageLog[0]
 
-      messageLog = messageLog[-5:]
+      messageLog = messageLog[-9:]
 
       messageLog = [initMessage] + messageLog
 
@@ -63,17 +55,20 @@ async def buildMessageLog(userIn, messageLog):
       response = getMsgResponse(messageLog)
 
 
+    #add AI response to messagelog
+    # Done before formatting to avoid confusing the AI with my HTML workarounds
+    messageLog.append({"role":"assistant","content": response})
 
+    #prevents HTML code from being read as elements
     response = html.escape(response)
 
+    #change markdown code blocks to HTML code blocks
     if("```" in response):
        response = re.sub("```.*","<pre><code>",response,1)
        response = re.sub("```","</code></pre>",response)
 
-    response = re.sub("[\n\r]+","<br>", response)
-       
-    
-    #add AI response to messagelog
-    messageLog.append({"role":"assistant","content": response})
+    #Convert all new line characters to line breaks
+    response = re.sub("[\n\r]+"," <br> <br> ", response)
+
     
     return response
