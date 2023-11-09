@@ -14,7 +14,7 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 
 def getCalender():
-    maxEvents = 30
+    maxEvents = 25
     #Gets the next n events from Google Calendar API
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
@@ -66,7 +66,12 @@ def getCalender():
             end = re.sub(":00-[0-9][0-9]:00","",end)
             end = re.sub("T", " ", end)
 
-            allEvents += (start + " to " + end + "\t "+ event['summary'] +"\n")
+            #TODO
+            # Implement dictionary here to group events by day
+            # Assemble string as a list of day headers followed by event time and summary
+            # Essentially halfs token use (~900 -> ~450)
+
+            allEvents += (start + " to " + end + " "+ event['summary'] +"\n")
 
         return allEvents
 
