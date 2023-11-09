@@ -35,7 +35,7 @@ OPENAI_API_KEY = <insert_your_key_here>
 # Usage
 Run app.py with python:
 ```
-pyhon app.py
+python app.py
 ```
 
 This is to be used in a similar way to other GPT-based assistants but can handle simple questions about a user's schedule as well. getCalander.py can be tweaked to include more events if needed. 
