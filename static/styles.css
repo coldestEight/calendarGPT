@@ -1,5 +1,5 @@
 .webpage{
-    background-color: rgb(15, 15, 15);
+    background-color: rgb(20, 20, 20)
 }
 
 .convoHolder{
@@ -27,7 +27,7 @@
 }
 
 .gptChat{
-    color: rgb(0,255,0);
+    color: rgb(220, 210, 80);
     background-color: rgb(0, 0, 0);
     font-family: 'Open Sans', sans-serif;
     display: inline-block;
@@ -44,7 +44,7 @@
 }
 
 .userChat{
-    color: rgb(0, 255, 255);
+    color: rgb(250, 249, 246);
     background-color: rgb(0, 0, 0);
     font-family: 'Open Sans', sans-serif;
     display: inline-block;
@@ -91,7 +91,7 @@
     background-color: rgb(0,0,0);
     border-color: rgb(102, 102, 102);
     border-style: solid;
-    color: rgb(255, 255, 255);
+    color: rgb(250, 249, 246);
     padding: 10px;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -108,7 +108,7 @@
     border-color: rgb(102, 102, 102);
     border-style: solid;
     background-color: rgb(0,0,0);
-    color: rgb(0,255,255);
+    color: rgb(250, 249, 246);
     padding: 8px;
     padding-left: 16px;
     padding-right: 16px;
