@@ -44,6 +44,7 @@ This is to be used in a similar way to other GPT-based assistants but can handle
  - Code blocks missing keyword highlights
 
 # Planned Features/Fixes
+ - Shrink token size by reformatting event inputs 
  - Add support for different time zones
  - Add weather API integration
  - Let user add events using assistant
